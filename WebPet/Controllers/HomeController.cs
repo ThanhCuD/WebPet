@@ -13,13 +13,20 @@ namespace WebPet.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public AppDbContext AppDbContext { get; }
+
+        public HomeController(ILogger<HomeController> logger, AppDbContext appDbContext)
         {
             _logger = logger;
+            AppDbContext = appDbContext;
         }
 
         public IActionResult Index()
         {
+            //Custommer test = new Custommer();
+            //test.Name = "dsadsa";
+            //AppDbContext.Tests.Add(test);
+            //AppDbContext.SaveChanges();
             return View();
         }
 

@@ -28,6 +28,7 @@ namespace WebPet
             services.AddControllersWithViews();
             services.AddDbContextPool<AppDbContext>(optionsAction =>
                                     optionsAction.UseSqlServer(Configuration.GetConnectionString("DBConnection")));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
