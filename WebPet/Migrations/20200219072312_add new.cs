@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebPet.Migrations
 {
-    public partial class addtable : Migration
+    public partial class addnew : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,10 +50,10 @@ namespace WebPet.Migrations
                 name: "Custommers",
                 columns: table => new
                 {
-                    CustID = table.Column<Guid>(nullable: false),
+                    CustID = table.Column<string>(nullable: false),
+                    PhoneNo = table.Column<string>(nullable: false),
                     FName = table.Column<string>(nullable: true),
-                    LName = table.Column<string>(nullable: false),
-                    PhoneNo = table.Column<string>(nullable: true),
+                    YearOld = table.Column<int>(nullable: false),
                     Email = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true)
                 },
@@ -177,23 +177,23 @@ namespace WebPet.Migrations
                     Breed = table.Column<string>(nullable: false),
                     TypeOfAnimal = table.Column<string>(nullable: true),
                     YearOld = table.Column<int>(nullable: false),
-                    OwnerCustID = table.Column<Guid>(nullable: true)
+                    OwnerID = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Animals", x => x.AniID);
                     table.ForeignKey(
-                        name: "FK_Animals_Custommers_OwnerCustID",
-                        column: x => x.OwnerCustID,
+                        name: "FK_Animals_Custommers_OwnerID",
+                        column: x => x.OwnerID,
                         principalTable: "Custommers",
                         principalColumn: "CustID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Animals_OwnerCustID",
+                name: "IX_Animals_OwnerID",
                 table: "Animals",
-                column: "OwnerCustID");
+                column: "OwnerID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

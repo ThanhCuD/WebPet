@@ -14,5 +14,16 @@ namespace WebPet.Models
         }
         public DbSet<Custommer> Custommers { get; set; }
         public DbSet<Animal> Animals { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // configures one-to-many relationship
+            modelBuilder.Entity<Animal>()
+                .HasOne(_ => _.Owner)
+                .WithMany(_ => _.Animals)
+                .HasForeignKey(_=>_.OwnerID)
+                .OnDelete(DeleteBehavior.Restrict);
+        }
     }
 }

@@ -5,30 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200218040923_init db.cs" />
-    <Compile Remove="Migrations\20200218040923_init db.Designer.cs" />
-    <Compile Remove="Migrations\20200218041353_init db.cs" />
-    <Compile Remove="Migrations\20200218041353_init db.Designer.cs" />
-    <Compile Remove="Migrations\20200218073628_test.cs" />
-    <Compile Remove="Migrations\20200218073628_test.Designer.cs" />
-    <Compile Remove="Migrations\20200218075314_identitydbcontext.cs" />
-    <Compile Remove="Migrations\20200218075314_identitydbcontext.Designer.cs" />
-    <Compile Remove="Migrations\20200218080250_updatetest.cs" />
-    <Compile Remove="Migrations\20200218080250_updatetest.Designer.cs" />
-    <Compile Remove="Migrations\20200218080442_test.cs" />
-    <Compile Remove="Migrations\20200218080442_test.Designer.cs" />
-    <Compile Remove="Migrations\20200218080929_test.cs" />
-    <Compile Remove="Migrations\20200218080929_test.Designer.cs" />
-    <Compile Remove="Migrations\20200218085612_add 2 table.cs" />
-    <Compile Remove="Migrations\20200218085612_add 2 table.Designer.cs" />
-    <Compile Remove="Migrations\20200218090136_add 2 table.cs" />
-    <Compile Remove="Migrations\20200218090136_add 2 table.Designer.cs" />
-    <Compile Remove="Migrations\20200218090415_add 2 table.cs" />
-    <Compile Remove="Migrations\20200218090415_add 2 table.Designer.cs" />
-    <Compile Remove="Migrations\20200218090538_add table.cs" />
-    <Compile Remove="Migrations\20200218090538_add table.Designer.cs" />
-    <Compile Remove="Migrations\20200218090607_add table.cs" />
-    <Compile Remove="Migrations\20200218090607_add table.Designer.cs" />
+    <Compile Remove="Migrations\20200219044538_add new.cs" />
+    <Compile Remove="Migrations\20200219044538_add new.Designer.cs" />
+    <Compile Remove="Migrations\20200219071351_add new.cs" />
+    <Compile Remove="Migrations\20200219071351_add new.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +23,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0-preview1.19506.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0-preview1-19509-03" />
   </ItemGroup>
 
 

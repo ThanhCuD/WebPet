@@ -10,8 +10,8 @@ using WebPet.Models;
 namespace WebPet.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200218090712_add table")]
-    partial class addtable
+    [Migration("20200219072312_add new")]
+    partial class addnew
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -231,8 +231,8 @@ namespace WebPet.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("OwnerCustID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("OwnerID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("TypeOfAnimal")
                         .HasColumnType("nvarchar(max)");
@@ -242,16 +242,15 @@ namespace WebPet.Migrations
 
                     b.HasKey("AniID");
 
-                    b.HasIndex("OwnerCustID");
+                    b.HasIndex("OwnerID");
 
                     b.ToTable("Animals");
                 });
 
             modelBuilder.Entity("WebPet.Models.Custommer", b =>
                 {
-                    b.Property<Guid>("CustID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("CustID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -262,12 +261,13 @@ namespace WebPet.Migrations
                     b.Property<string>("FName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LName")
+                    b.Property<string>("PhoneNo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhoneNo")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("YearOld")
+                        .IsRequired()
+                        .HasColumnType("int");
 
                     b.HasKey("CustID");
 
@@ -329,7 +329,8 @@ namespace WebPet.Migrations
                 {
                     b.HasOne("WebPet.Models.Custommer", "Owner")
                         .WithMany("Animals")
-                        .HasForeignKey("OwnerCustID");
+                        .HasForeignKey("OwnerID")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618
         }

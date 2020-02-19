@@ -10,16 +10,22 @@ namespace WebPet.Models
     {
 
         [Key]
-        public Guid CustID { get; set; }
+        public string CustID { get; set; }
+        [Phone]
+        [Required]
+        [Display(Name = "Số Điện Thoại")]
+        public string PhoneNo { get; set; }
+        [Display(Name = "Họ và Tên")]
         public string FName { get; set; }
         [Required]
-        public string LName { get; set; }
-        [Phone]
-        public string PhoneNo { get; set; }
+        [Display(Name = "Năm Sinh")]
+        public int? YearOld { get; set; }
         [EmailAddress]
+        [Display(Name = "Địa Chỉ Email")]
         public string Email { get; set; }
+        [Display(Name = "Địa Chỉ Lưu Trú")]
         public string Address { get; set; }
-        public List<Animal> Animals { get; set; }
+        public ICollection<Animal> Animals { get; set; }
 
     }
 }
