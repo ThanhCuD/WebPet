@@ -19,10 +19,42 @@ namespace WebPet.Controllers
         }
 
         // GET: Animals
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder,string  searchString)
         {
+            ViewData["currentFilter"] = searchString;
+            ViewData["NameSortParm"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["BreedSortParm"] = sortOrder == "breed" ? "breed_desc" : "breed";
+            ViewData["TypeSortParm"] = sortOrder == "type" ? "type_desc" : "type";
             var appDbContext = _context.Animals.Include(a => a.Owner);
-            return View(await appDbContext.ToListAsync());
+            var ani = appDbContext.Select(_ => _);
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                ani = ani.Where(_ => _.AnimalName.Contains(searchString) ||
+                            _.Breed.Contains(searchString) ||
+                            _.TypeOfAnimal.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    ani = ani.OrderByDescending(s => s.AnimalName);
+                    break;
+                case "breed_desc":
+                    ani = ani.OrderByDescending(s => s.Breed);
+                    break;
+                case "type_desc":
+                    ani = ani.OrderByDescending(s => s.TypeOfAnimal);
+                    break;
+                case "type":
+                    ani = ani.OrderBy(s => s.TypeOfAnimal);
+                    break;
+                case "breed":
+                    ani = ani.OrderBy(s => s.Breed);
+                    break;
+                default:
+                    ani = ani.OrderBy(s => s.AnimalName);
+                    break;
+            }
+                    return View(await ani.ToListAsync());
         }
 
         // GET: Animals/Details/5

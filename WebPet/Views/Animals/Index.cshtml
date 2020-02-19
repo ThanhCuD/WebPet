@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebPet.Models.Animal>
+﻿@model IEnumerable<Animal>
 
 @{
     ViewData["Title"] = "Index";
@@ -9,17 +9,33 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.AnimalName)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">
+                    @Html.DisplayNameFor(model => model.AnimalName)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Breed)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["BreedSortParm"]">
+                    @Html.DisplayNameFor(model => model.Breed)
+                </a>
+                
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TypeOfAnimal)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TypeSortParm"]">
+                    @Html.DisplayNameFor(model => model.TypeOfAnimal)
+                </a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.YearOld)
