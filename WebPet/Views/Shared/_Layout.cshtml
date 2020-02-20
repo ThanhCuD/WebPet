@@ -20,12 +20,22 @@
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a asp-controller="home" asp-action="index" class="nav-link">List</a>
+                            <a asp-controller="home" asp-action="Index" class="nav-link">Item1</a>
                         </li>
                         <li class="nav-item">
-                            <a asp-controller="home" asp-action="create" class="nav-link">Create</a>
+                            <a asp-controller="home" asp-action="Privacy" class="nav-link">Item2</a>
                         </li>
-                        @if (signinManager.IsSignedIn(User) && (User.IsInRole("Administrator") || User.IsInRole("Super Admin")))
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Admin Manage
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" asp-controller="Admin"
+                                   asp-action="ListRoles">Roles</a>
+                            </div>
+                        </li>
+                        @if (signinManager.IsSignedIn(User))
                         {
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
@@ -33,12 +43,10 @@
                                     Manage
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" asp-controller="Administator"
-                                       asp-action="ListUsers">Users</a>
-                                    <a class="dropdown-item" asp-controller="Administator"
-                                       asp-action="ListRole">Roles</a>
-                                    <a class="dropdown-item" asp-controller="Administator"
-                                       asp-action="ListClaims">Claims</a>
+                                    <a class="dropdown-item" asp-controller="Custommers"
+                                       asp-action="Index">Custommers</a>
+                                    <a class="dropdown-item" asp-controller="Animals"
+                                       asp-action="Index">Pets</a>
                                 </div>
                             </li>
                         }
@@ -47,7 +55,7 @@
                         @if (signinManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
-                                <form method="post" asp-controller="account" asp-action="logout">
+                                <form method="post" asp-controller="account" asp-action="Logout">
                                     <button type="submit" style="width:auto"
                                             class="nav-link btn btn-link py-0">
                                         Logout @User.Identity.Name

@@ -46,5 +46,33 @@ namespace WebPet.Controllers
             }
             return View(model);
         }
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await userManager.FindByNameAsync(model.Email);
+                if(user!=null && await userManager.CheckPasswordAsync(user, model.Password)){
+                    var result = await signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+            }
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction(nameof(Index),"Home");
+        }
     }
 }
