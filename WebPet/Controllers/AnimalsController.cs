@@ -19,7 +19,9 @@ namespace WebPet.Controllers
         }
 
         // GET: Animals
-        public async Task<IActionResult> Index(string sortOrder,string  searchString)
+        public async Task<IActionResult> Index(string sortOrder,string  searchString,
+                                                         string currentFilter,
+                                                          int? pageNumber)
         {
             ViewData["currentFilter"] = searchString;
             ViewData["NameSortParm"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -32,6 +34,14 @@ namespace WebPet.Controllers
                 ani = ani.Where(_ => _.AnimalName.Contains(searchString) ||
                             _.Breed.Contains(searchString) ||
                             _.TypeOfAnimal.Contains(searchString));
+            }
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
             }
             switch (sortOrder)
             {
@@ -54,7 +64,8 @@ namespace WebPet.Controllers
                     ani = ani.OrderBy(s => s.AnimalName);
                     break;
             }
-                    return View(await ani.ToListAsync());
+            int pageSize = 3;
+            return View(await PaginatedList<Animal>.CreateAsync(ani.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Animals/Details/5

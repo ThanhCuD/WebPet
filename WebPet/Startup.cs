@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using WebPet.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace WebPet
 {
@@ -28,7 +29,8 @@ namespace WebPet
             services.AddControllersWithViews();
             services.AddDbContextPool<AppDbContext>(optionsAction =>
                                     optionsAction.UseSqlServer(Configuration.GetConnectionString("DBConnection")));
-            
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +51,7 @@ namespace WebPet
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
