@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Modules\WebPet.Module.Core\WebPet.Module.Core.csproj" />
+    <ProjectReference Include="..\WebPet.Module.Infrastructure\WebPet.Module.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
