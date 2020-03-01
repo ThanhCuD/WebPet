@@ -1,6 +1,10 @@
 ﻿[
   {
     "id": "WebPet.Module.Core",
-    "version" : "1.0.0"
+    "version": "1.0.0"
+  },
+  {
+    "id": "WebPet.Module.BackEnd",
+    "version": "1.0.0"
   }
 ]

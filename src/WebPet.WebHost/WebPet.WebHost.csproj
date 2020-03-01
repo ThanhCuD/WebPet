@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Modules\WebPet.Module.BackEnd\WebPet.Module.BackEnd.csproj" />
     <ProjectReference Include="..\Modules\WebPet.Module.Core\WebPet.Module.Core.csproj" />
     <ProjectReference Include="..\WebPet.Module.Infrastructure\WebPet.Module.Infrastructure.csproj" />
   </ItemGroup>

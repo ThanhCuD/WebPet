@@ -1,0 +1,6 @@
+﻿{
+  "id": "WebPet.Module.BackEnd",
+  "name": "Core",
+  "isBundledWithHost": true,
+  "version": "1.0.0"
+}
